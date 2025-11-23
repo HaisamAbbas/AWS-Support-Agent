@@ -7,6 +7,10 @@ an AWS-compatible agent using LangGraph, OpenAI, and FAISS.
 import os
 import sys
 import click
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 from pipelines.agent_creator import aws_agent_creation_pipeline
 
