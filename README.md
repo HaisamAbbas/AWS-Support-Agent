@@ -2,6 +2,17 @@
 
 A production-ready, full-stack AWS Support Agent featuring FastAPI backend with LangChain & GROQ, and Vue 3 frontend with Tailwind CSS, authentication, real-time streaming, and chat history persistence.
 
+## 📸 Screenshots
+
+### Login Interface
+![Login Screen](images/Screenshot%202025-11-23%20234213.png)
+
+### Chat Interface
+![Chat Interface](images/Screenshot%202025-11-23%20234303.png)
+
+### Agent Response
+![Agent Response](images/Screenshot%202025-11-23%20234337.png)
+
 ## 🌟 Features
 
 ### Backend (FastAPI + LangChain)
