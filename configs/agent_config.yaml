@@ -1,0 +1,17 @@
+# AWS Support Agent Configuration
+model:
+  name: aws_agent
+  license: Apache 2.0
+  description: "AWS Cloud Assistant built with LangChain, OpenAI, and FAISS for vector store and automation tools."
+  tags: ["llm", "agent", "aws", "cloud", "rag"]
+
+parameters:
+  url_scraper:
+    docs_url: "https://docs.aws.amazon.com" 
+    website_url: "https://aws.amazon.com"
+    repo_url: "https://github.com/aws-samples"
+  agent_creator:
+    llm_type: "ollama"  # Can be "openai", "ollama", or "groq"
+    ollama_model_name: "llama3.2"
+    temperature: 0.2
+    max_tokens: 1200
