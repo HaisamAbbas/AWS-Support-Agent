@@ -107,17 +107,28 @@ def aws_agent_creator(
         ),
     ]
 
-    from langchain.agents import initialize_agent, AgentType
+    from langchain.agents import ConversationalChatAgent, AgentExecutor
     from langchain.memory import ConversationBufferMemory
+    from langchain.prompts import MessagesPlaceholder
+    from langchain.schema import SystemMessage
     
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
     
-    executor = initialize_agent(
-        tools=tools,
+    # Create custom conversational agent with AWS system prompt
+    system_message = SystemMessage(content=PREFIX)
+    
+    agent = ConversationalChatAgent.from_llm_and_tools(
         llm=llm,
-        agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
+        tools=tools,
+        system_message=system_message.content,
         verbose=True,
+    )
+    
+    executor = AgentExecutor.from_agent_and_tools(
+        agent=agent,
+        tools=tools,
         memory=memory,
+        verbose=True,
         handle_parsing_errors=True,
     )
 
@@ -125,5 +136,6 @@ def aws_agent_creator(
     print(f"Created AWS Support Agent with tools: {[tool.name for tool in tools]}")
     print(f"Using LLM type: {config.llm_type}")
     print(f"Model name: {config.ollama_model_name if config.llm_type == 'ollama' else config.groq_model_name if config.llm_type == 'groq' else config.openai_model_name}")
+    print(f"System prompt: {PREFIX[:100]}...")
 
     return None, tools, executor  
